@@ -10,6 +10,7 @@ final class TestUserProvider implements UserProviderInterface
 {
     private string $user = 'user';
 
+    /** @phpstan-var class-string|null */
     private ?string $userEntity = null;
 
     public function changeUser(string $user): void
@@ -27,6 +28,9 @@ final class TestUserProvider implements UserProviderInterface
         return $this->userEntity;
     }
 
+    /**
+     * @phpstan-param class-string $userEntity
+     */
     public function changeUserEntity(string $userEntity): void
     {
         $this->userEntity = $userEntity;

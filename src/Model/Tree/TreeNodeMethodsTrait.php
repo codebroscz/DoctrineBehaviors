@@ -10,7 +10,6 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Contract\Entity\TreeNodeInterface;
 use Knp\DoctrineBehaviors\Exception\ShouldNotHappenException;
 use Knp\DoctrineBehaviors\Exception\TreeException;
-use Nette\Utils\Json;
 
 trait TreeNodeMethodsTrait
 {
@@ -84,7 +83,7 @@ trait TreeNodeMethodsTrait
     }
 
     /**
-     * @return Collection<TreeNodeInterface>
+     * @return Collection<int|string, TreeNodeInterface>
      */
     public function getChildNodes(): Collection
     {
@@ -188,7 +187,15 @@ trait TreeNodeMethodsTrait
     {
         $tree = $this->toArray($prepare);
 
-        return Json::encode($tree);
+        $json = \json_encode($tree, \JSON_UNESCAPED_SLASHES | \JSON_PRESERVE_ZERO_FRACTION);
+
+        $error = \json_last_error();
+
+        if ($error !== \JSON_ERROR_NONE || $json === false) {
+            throw new ShouldNotHappenException(\json_last_error_msg(), $error);
+        }
+
+        return $json;
     }
 
     /**
@@ -269,9 +276,9 @@ trait TreeNodeMethodsTrait
     }
 
     /**
-     * @return mixed
+     * @return TreeNodeInterface|null
      */
-    public function offsetGet(mixed $offset)
+    public function offsetGet(mixed $offset): ?TreeNodeInterface
     {
         return $this->getChildNodes()[$offset];
     }

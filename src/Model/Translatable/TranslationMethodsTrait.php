@@ -5,14 +5,30 @@ declare(strict_types=1);
 namespace Knp\DoctrineBehaviors\Model\Translatable;
 
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
-use Nette\Utils\Strings;
+use Knp\DoctrineBehaviors\Exception\ShouldNotHappenException;
 
 trait TranslationMethodsTrait
 {
     public static function getTranslatableEntityClass(): string
     {
+        if (function_exists('mb_substr')) {
+            return mb_substr(static::class, 0, -11, 'UTF-8'); // MB is much faster
+        }
+
+        if (! extension_loaded('iconv')) {
+            throw new ShouldNotHappenException(
+                __METHOD__ . '() requires extension ICONV or MBSTRING, neither is loaded.'
+            );
+        }
+
         // By default, the translatable class has the same name but without the "Translation" suffix
-        return Strings::substring(static::class, 0, -11);
+        $part = \iconv_substr(static::class, 0, -11, 'UTF-8');
+
+        if ($part === false) {
+            throw new ShouldNotHappenException(__METHOD__ . '() failed to extract the translatable class name.');
+        }
+
+        return $part;
     }
 
     /**

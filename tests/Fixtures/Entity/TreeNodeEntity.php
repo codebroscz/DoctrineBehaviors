@@ -14,10 +14,16 @@ use Knp\DoctrineBehaviors\Model\Tree\TreeNodeTrait;
 use Knp\DoctrineBehaviors\Tests\Fixtures\Repository\TreeNodeRepository;
 use Stringable;
 
+/**
+ * @phpstan-implements ArrayAccess<int|string, TreeNodeEntity>
+ */
 #[Entity(repositoryClass: TreeNodeRepository::class)]
 class TreeNodeEntity implements TreeNodeInterface, ArrayAccess, Stringable
 {
     use TreeNodeTrait;
+
+    /** @internal for testing only */
+    public string $parentNodePath;
 
     #[Id]
     #[Column(type: 'integer')]

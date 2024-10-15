@@ -154,12 +154,4 @@ final class BlameableTest extends AbstractBehaviorTestCase
 
         $this->assertSame('"COMMIT"', $stackLogger->queries[$startKey + 6]['sql']);
     }
-
-    /**
-     * @return string[]
-     */
-    protected function provideCustomConfigs(): array
-    {
-        return [__DIR__ . '/../../config/config_test_with_blameable_entity.php'];
-    }
 }

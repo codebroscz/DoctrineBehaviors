@@ -8,27 +8,23 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Logging\DebugStack;
 use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\DoctrineBehaviors\Tests\HttpKernel\DoctrineBehaviorsKernel;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 abstract class AbstractBehaviorTestCase extends TestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $entityManager;
+
+    protected EntityManagerInterface $entityManager;
 
     private ContainerInterface $container;
 
     protected function setUp(): void
     {
-        $doctrineBehaviorsKernel = new DoctrineBehaviorsKernel($this->provideCustomConfigs());
-        $doctrineBehaviorsKernel->boot();
+        $container = require __DIR__ . '/config/config_test.php';
 
-        $this->container = $doctrineBehaviorsKernel->getContainer();
+        $this->container = $container();
 
-        $this->entityManager = $this->getService('doctrine.orm.entity_manager');
+        $this->entityManager = $this->getService(EntityManagerInterface::class);
         $this->loadDatabaseFixtures();
     }
 

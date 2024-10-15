@@ -11,5 +11,8 @@ interface UserProviderInterface
      */
     public function provideUser();
 
+    /**
+     * @phpstan-return class-string|null
+     */
     public function provideUserEntity(): ?string;
 }

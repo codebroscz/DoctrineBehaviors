@@ -9,6 +9,11 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
+## [v3.0.0] - 2024-10-15
+
+### Changed
+- Remove dependencies on Symfony and Nette packages
+
 ## [v2.0.1] - 2020-01-08
 
 ### Changed

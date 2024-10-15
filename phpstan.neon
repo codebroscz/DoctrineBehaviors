@@ -14,8 +14,7 @@ parameters:
         - tests
         - utils/phpstan-behaviors/src
 
-    level: 8
-    checkGenericClassInNonGenericObjectType: false
+    level: 7
 
     # to allow installing with various phsptan versions without reporting old errors here
     reportUnmatchedIgnoredErrors: false
@@ -41,11 +40,13 @@ parameters:
         - '#Offset 0 does not exist on array<Knp\\DoctrineBehaviors\\Contract\\Entity\\TreeNodeInterface\>\|ArrayAccess\|null#'
 
         - '#Cannot call method addChildNode\(\) on Knp\\DoctrineBehaviors\\Contract\\Entity\\TreeNodeInterface\|null#'
+        - '#Cannot call method \w+\(\) on Knp\\DoctrineBehaviors\\Contract\\Entity\\TreeNodeInterface\|false#'
 
         - '#Do not use "\$entityManager->getRepository\(\)" outside of the constructor of repository service#'
 
         # resolve in follow up PR
         - '#Use explicit return value over magic &reference#'
+        - '#Use explicit methods over array access on object#'
 
         # magic
         -

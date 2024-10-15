@@ -1,8 +1,8 @@
 # Doctrine Behaviors
 
-[![Downloads](https://img.shields.io/packagist/dt/knplabs/doctrine-behaviors.svg?style=flat-square)](https://packagist.org/packages/knplabs/doctrine-behaviors)
+[![Downloads](https://img.shields.io/packagist/dt/codebroscz/doctrine-behaviors.svg?style=flat-square)](https://packagist.org/packages/codebros/doctrine-behaviors)
 
-This PHP library is a collection of traits and interfaces that add behaviors to Doctrine entities and repositories.
+This framework agnostic PHP library is a collection of traits and interfaces that add behaviors to Doctrine entities and repositories.
 
 It currently handles:
 
@@ -16,6 +16,14 @@ It currently handles:
  * [Tree](/docs/tree.md)
 
 ## Install
+
+Add this to Composer `repositories` section in `composer.json` file. 
+```json
+{
+    "type": "vcs",
+    "url": "https://github.com/codebroscz/DoctrineBehaviors"
+}
+```
 
 ```bash
 composer require knplabs/doctrine-behaviors

@@ -15,7 +15,7 @@ trait TreeNodePropertiesTrait
     protected $materializedPath = '';
 
     /**
-     * @var Collection|TreeNodeInterface[]
+     * @var Collection<int|string, TreeNodeInterface>
      */
     private $childNodes;
 
