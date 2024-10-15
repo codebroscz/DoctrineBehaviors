@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Knp\DoctrineBehaviors\EventSubscriber;
 
-use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
+use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Knp\DoctrineBehaviors\Contract\Entity\UuidableInterface;
 
-final class UuidableEventSubscriber implements EventSubscriberInterface
+final class UuidableEventSubscriber implements EventSubscriber
 {
     public function loadClassMetadata(LoadClassMetadataEventArgs $loadClassMetadataEventArgs): void
     {
