@@ -13,7 +13,6 @@ use Psr\Container\ContainerInterface;
 
 abstract class AbstractBehaviorTestCase extends TestCase
 {
-
     protected EntityManagerInterface $entityManager;
 
     private ContainerInterface $container;

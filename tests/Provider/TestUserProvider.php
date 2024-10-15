@@ -10,7 +10,9 @@ final class TestUserProvider implements UserProviderInterface
 {
     private string $user = 'user';
 
-    /** @phpstan-var class-string|null */
+    /**
+     * @phpstan-var class-string|null
+     */
     private ?string $userEntity = null;
 
     public function changeUser(string $user): void

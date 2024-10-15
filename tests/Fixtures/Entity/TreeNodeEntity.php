@@ -22,7 +22,9 @@ class TreeNodeEntity implements TreeNodeInterface, ArrayAccess, Stringable
 {
     use TreeNodeTrait;
 
-    /** @internal for testing only */
+    /**
+     * @internal for testing only
+     */
     public string $parentNodePath;
 
     #[Id]
